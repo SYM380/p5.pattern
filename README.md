@@ -1,5 +1,6 @@
 # p5.pattern
 A pattern drawing library for p5.js.
+![alt](displayImg.gif)
 
 ## Features
 
