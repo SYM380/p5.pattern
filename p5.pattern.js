@@ -636,7 +636,7 @@ const PTN =
      * @param {Number} _space      Stripe space. default = 10
      * @param {Number} _minRadius  Minimum radius. default = 0
      */
-    stripeCirce : function(_space = 25, _minRadius = 0)
+    stripeCircle : function(_space = 25, _minRadius = 0)
     {
         const func = function(_w, _h, _rt = window)
         {
