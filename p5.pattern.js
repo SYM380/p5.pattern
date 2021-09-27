@@ -636,7 +636,7 @@ const PTN =
      * @param {Number} _space      Stripe space. default = 10
      * @param {Number} _minRadius  Minimum radius. default = 0
      */
-    stripeCircle : function(_space = 25, _minRadius = 0)
+     stripeCircle : function(_space = 25, _minRadius = 0)
     {
         const func = function(_w, _h, _rt = window)
         {
@@ -691,9 +691,9 @@ const PTN =
                     _rt.beginShape();
                     for(let i = 0; i < vNum; i++)
                     {
-                            const rad = i * _rt.TAU / vNum;
-                            const x = _w / 2 + _rt.cos(rad) * radius;
-                            const y = _h / 2 + _rt.sin(rad) * radius;
+                            const rad = i * Math.PI * 2 / vNum;
+                            const x = _w / 2 + Math.cos(rad) * radius;
+                            const y = _h / 2 + Math.sin(rad) * radius;
                             _rt.vertex(x, y);
                     }
                     _rt.endShape(_rt.CLOSE);
@@ -716,16 +716,17 @@ const PTN =
             if(_angleSpan == 0)_angleSpan = 1;
 
             const c = _rt.patternColors();
+            const tau = _rt._renderer._angleMode = _rt.DEGREES ? 360 : _rt.TAU;
 
             _rt.ellipseMode(_rt.CENTER);
             _rt.noStroke();
 
             let count = 0;
             const dia = _rt.sqrt(_w * _w + _h * _h);
-            for(let r = 0; r < _rt.TAU; r += _angleSpan)
+            for(let r = 0; r < tau; r += _angleSpan)
             {
                 //Error measures
-                const endRad = r + _angleSpan > _rt.TAU ? 0.00001 : r + _angleSpan;
+                const endRad = r + _angleSpan > tau ? 0.00001 : r + _angleSpan;
                 _rt.fill(c[count % c.length]);
                 _rt.arc(_w / 2, _h /2, dia, dia, r, endRad + 0.0001);
                 count++;
@@ -770,16 +771,16 @@ const PTN =
                 for(let x = 0; x < _w; x += vertSpan)
                 {
                     const rad = x / _waveW * _rt.TAU;
-                    _rt.vertex(x, y + _rt.sin(rad) * _waveH);
+                    _rt.vertex(x, y + Math.sin(rad) * _waveH);
                 }
                 
-                _rt.vertex(_w, y + _rt.sin(_w / _waveW * _rt.TAU) * _waveH);
+                _rt.vertex(_w, y + Math.sin(_w / _waveW * Math.PI * 2) * _waveH);
                 for(let x = _w; x > 0; x -= vertSpan)
                 {
-                    const rad = x / _waveW * _rt.TAU;
-                    _rt.vertex(x, y + _weight + _rt.sin(rad) * _waveH);
+                    const rad = x / _waveW * Math.PI * 2;
+                    _rt.vertex(x, y + _weight + Math.sin(rad) * _waveH);
                 }
-                _rt.vertex(0, y + _weight + _rt.sin(0) * _waveH);
+                _rt.vertex(0, y + _weight + Math.sin(0) * _waveH);
                 
                 _rt.endShape(_rt.CLOSE);
             }
