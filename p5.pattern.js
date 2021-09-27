@@ -636,7 +636,7 @@ const PTN =
      * @param {Number} _space      Stripe space. default = 10
      * @param {Number} _minRadius  Minimum radius. default = 0
      */
-     stripeCircle : function(_space = 25, _minRadius = 0)
+    stripeCircle : function(_space = 25, _minRadius = 0)
     {
         const func = function(_w, _h, _rt = window)
         {
@@ -716,7 +716,7 @@ const PTN =
             if(_angleSpan == 0)_angleSpan = 1;
 
             const c = _rt.patternColors();
-            const tau = _rt._renderer._angleMode = _rt.DEGREES ? 360 : _rt.TAU;
+            const tau = _rt._angleMode == _rt.DEGREES ? 360 : _rt.TAU;
 
             _rt.ellipseMode(_rt.CENTER);
             _rt.noStroke();
